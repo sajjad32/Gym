@@ -1,0 +1,135 @@
+<div class="container emp-profile">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="profile-img">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
+        <div class="file btn btn-lg btn-primary">
+          Change Photo
+          <input type="file" name="file"/>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="profile-head">
+        <h4>{{user.name}}</h4>
+        <h6>کد: </h6>{{user.id}}<br>
+        <h6>شماره تماس: </h6>{{user.phoneNo}}<br>
+        <h6>شماره کمد: </h6>{{user.shelfNo}}<br>
+        <p>{{user.details}}</p>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <button type="button" class="profile-edit-btn" data-toggle="modal" data-target="#editUserModal" (click)="editUser()">
+        ویراش اطلاعات
+      </button>
+    </div>
+
+    <!--[ngClass]="status ? 'show' : ''"-->
+    <!-- Modal -->
+    <div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="editUserModalLabel" aria-hidden='true'>
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editUserModalLabel">ویرایش اطلاعات</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+            <form #form="ngForm" (submit)="onUpdate(form)">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="name">نام</span>
+                </div>
+                <input name="name" #name="ngModel" class="form-control" [(ngModel)]="userService.formData.name">
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="phoneNo">شماره تماس</span>
+                </div>
+                <input name="phoneNo" #phoneNo="ngModel" type="number" class="form-control" [(ngModel)]="userService.formData.phoneNo">
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="shelfNo">شماره کمد</span>
+                </div>
+                <input name="shelfNo" #shelfNo="ngModel" type="number" class="form-control" [(ngModel)]="userService.formData.shelfNo">
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="details">جزئیات</span>
+                </div>
+                <textarea name="details" #details="ngModel" class="form-control" [(ngModel)]="userService.formData.details"></textarea>.
+              </div>
+              <div class="form-group text-center">
+                <button type="submit" class="btn btn-success">ثبت تغییرات</button>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  <br>
+  <br>
+  <div class="row">
+    <div class="col-md-12 userTabs">
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="present-tab" data-toggle="tab" href="#present" role="tab" aria-controls="present" aria-selected="true">حضور</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="payment-tab" data-toggle="tab" href="#payment" role="tab" aria-controls="payment" aria-selected="false">شهریه</a>
+        </li>
+      </ul>
+      <div class="tab-content profile-tab" id="myTabContent">
+        <div class="tab-pane fade show active" id="present" role="tabpanel" aria-labelledby="present-tab">
+          <div class="table100">
+            <table>
+              <thead>
+                <tr class="table100-head">
+                  <th class="column1">تاریخ</th>
+                  <th class="column2">زمان ورود</th>
+                  <th class="column3">زمان خروج</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let time of presents">
+                  <td class="column1">{{time.date}}</td>
+                  <td class="column2">{{time.enterTime}}</td>
+                  <td class="column3">{{time.outTime}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="payment" role="tabpanel" aria-labelledby="payment-tab">
+          <div class="table100">
+            <table>
+              <thead>
+              <tr class="table100-head">
+                <th class="column1">تایخ</th>
+                <th class="column2">مبلغ</th>
+                <th class="column3">روش پرداخت</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let pay of payments">
+                <td class="column1">{{pay.date}}</td>
+                <td class="column2">{{pay.price}} تومان</td>
+                <td class="column3">{{pay.method}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<notifier-container></notifier-container>

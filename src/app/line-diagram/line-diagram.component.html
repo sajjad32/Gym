@@ -1,0 +1,20 @@
+<div class="jumbotron">
+  <h2 class="display-4 text-center">نمودار حضور افراد</h2>
+  <hr>
+  <div style="width: 900px; margin: 60px auto;">
+    <canvas id="usersLineChart"></canvas>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="datePicker">
+      <dp-date-picker dir="rtl" [(ngModel)]="endDate" mode="day" placeholder="تا تاریخ" theme="dp-material"></dp-date-picker>
+      <dp-date-picker dir="rtl" [(ngModel)]="startDate" mode="day" placeholder="از تاریخ" theme="dp-material"></dp-date-picker>
+    </div>
+  </div>
+  <div class="row">
+    <button class="btn btn-success" style="margin: 10px auto;" [disabled]="startDate==null || endDate==null" (click)="getUsers(startDate, endDate)">رسم نمودار</button>
+  </div>
+</div>
+
+<notifier-container></notifier-container>

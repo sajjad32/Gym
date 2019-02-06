@@ -1,0 +1,173 @@
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar {
+  width: 600px;
+  height: 60px;
+  background: rgba(255,255,255,.9);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 5px;
+  position: relative;
+  box-shadow: 0 5px 20px rgba(90,90,90,.1);
+  transition: .2s all;
+}
+
+/*lil hack*/
+.navbar:before {
+  content: '';
+  position: absolute;
+  width: 240px;
+  height: 60px;
+  background: #F0F0F0;
+  top: -60px;
+  z-index: 3;
+}
+
+.navbar:hover {
+  box-shadow: 0 5px 20px rgba(90,90,90,.2);
+  transform: translateY(-1px);
+}
+
+.icon-button {
+  font-size: 20px;
+  position: relative;
+  color: rgba(0,0,0,.2);
+  transition: .2s all;
+  cursor: pointer;
+}
+
+.icon-button:hover .fas {
+  color: rgba(0,0,0,.3);
+}
+
+.icon-button:active {
+  transform: translateY(5px) scale(.9);
+}
+
+.icon-button:active .fas {
+  color: rgba(0,0,0,.9);
+}
+
+.icon-button {
+  position: relative;
+  padding: 2px;
+}
+
+.icon-button.search:after {
+  content: 'جستجو';
+  font-family: yekan;
+  position: absolute;
+  transform: translate(0px, -23px);
+  top: -23px;
+  left: -9px;
+  font-size: 13px;
+  transition: .2s 0 all;
+}
+.icon-button.calendar:after {
+  content: 'امروز';
+  font-family: yekan;
+  position: absolute;
+  transform: translate(0px, -23px);
+  top: -23px;
+  left: -2px;
+  font-size: 13px;
+  transition: .2s 0 all;
+}
+.icon-button.list:after {
+  content: 'افراد';
+  font-family: yekan;
+  position: absolute;
+  transform: translate(0px, -23px);
+  top: -23px;
+  left: 0;
+  font-size: 13px;
+  transition: .2s 0 all;
+}
+.icon-button.credit:after {
+  content: 'شهریه';
+  font-family: yekan;
+  position: absolute;
+  transform: translate(0px, -23px);
+  top: -23px;
+  left: -4px;
+  font-size: 13px;
+  transition: .2s 0 all;
+}
+.icon-button.chart:after {
+  content: 'نمودار';
+  font-family: yekan;
+  position: absolute;
+  transform: translate(0px, -23px);
+  top: -23px;
+  left: -4px;
+  font-size: 13px;
+  transition: .2s 0 all;
+}
+
+
+
+.icon-button.search:active:after{
+  transform: translate(0px, 0px) scale(1);
+  top: -14px;
+  left: -9px;
+  color: black;
+  transition: .2s .1s all;
+}
+.icon-button.calendar:active:after{
+  transform: translate(0px, 0px) scale(1);
+  top: -14px;
+  left: -2px;
+  color: black;
+  transition: .2s .1s all;
+}
+.icon-button.list:active:after{
+  transform: translate(0px, 0px) scale(1);
+  top: -14px;
+  left: 0;
+  color: black;
+  transition: .2s .1s all;
+}
+.icon-button.credit:active:after{
+  transform: translate(0px, 0px) scale(1);
+  top: -14px;
+  left: -4px;
+  color: black;
+  transition: .2s .1s all;
+}
+.icon-button.chart:active:after{
+  transform: translate(0px, 0px) scale(1);
+  top: -14px;
+  left: -4px;
+  color: black;
+  transition: .2s .1s all;
+}
+
+* {
+  -webkit-user-select: none; /* Chrome all / Safari all */
+
+  -moz-user-select: none; /* Firefox all */
+
+  -ms-user-select: none; /* IE 10+ */
+
+  user-select: none;/* Likely future */
+}
+
+i:focus {
+  box-shadow: none;
+  outline: none;
+}

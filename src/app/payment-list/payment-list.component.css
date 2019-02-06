@@ -1,0 +1,26 @@
+.jumbotron {
+  background-color: transparent;
+}
+table {
+  background: white;
+}
+table thead tr {
+  height: 40px;
+  background: #af2caa;
+}
+table tbody tr {
+  height: 50px;
+}
+.column1 {width: 35%;}
+.column2 {width: 20%;}
+.column3 {width: 25%;}
+.column4 {width: 20%;}
+.add-payment-btn {
+  margin-top: 15px;
+  border: none;
+  border-radius: 1.5rem;
+  width: 150px;
+  padding: 4px;
+  font-weight: 600;
+  cursor: pointer;
+}

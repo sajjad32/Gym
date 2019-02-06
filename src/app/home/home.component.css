@@ -1,0 +1,21 @@
+.badge-pill i{
+  font-size: 14px;
+  left: -0.6em;
+  position: relative;
+}
+
+.badge-pill i:hover {
+  cursor: pointer;
+}
+
+.form-control {
+  border-radius: 0 0.25rem 0.25rem 0 !important;
+}
+
+.input-group-prepend span {
+  border-radius: 0.25rem 0 0 0.25rem !important;
+}
+
+.input-group-prepend span {
+  border-left: 1px solid #ced4da;
+}

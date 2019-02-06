@@ -1,0 +1,29 @@
+<ul class="nav justify-content-center" style="">
+  <li class="nav-item">
+    <div class="input-group mb-3" style="margin-top: 60px;">
+      <input type="text" class="form-control" [(ngModel)]="searchString" (input)="searchName()" placeholder="جستجو..." aria-label="Name" aria-describedby="name-search">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="name-search">@</span>
+      </div>
+    </div>
+  </li>
+</ul>
+
+
+<div class="container" *ngIf="searchString">
+  <div class="row justify-content-md-center" id="users-list">
+    <div class="col-md-10">
+      <ul class="list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let user of users">
+          {{ user.name }}
+          <span class="badge badge-pill">
+            <i class="fa fa-plus" *ngIf="!user.flag" style="color: #177b40" (click)="addUserEnter(user.id)"></i>
+            <i class="fa fa-power-off" *ngIf="user.flag" style="color: red;" (click)="addUserOut(user.id)"></i>
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<notifier-container></notifier-container>

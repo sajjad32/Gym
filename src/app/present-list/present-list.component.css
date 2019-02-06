@@ -1,0 +1,16 @@
+.jumbotron {
+  background-color: transparent;
+}
+table {
+  background: white;
+}
+table thead tr {
+  height: 40px;
+  background: #2caf92;
+}
+table tbody tr {
+  height: 50px;
+}
+.column1 {width: 40%;}
+.column2 {width: 30%;}
+.column3 {width: 30%;}

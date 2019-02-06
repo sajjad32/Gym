@@ -1,0 +1,119 @@
+<div class="jumbotron">
+  <h2 class="display-4 text-center">لیست افراد</h2>
+  <hr>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="table100">
+        <table>
+          <thead>
+          <tr class="table100-head">
+            <th class="column1">کد</th>
+            <th class="column2">نام</th>
+            <th class="column3">شماره تماس</th>
+            <th class="column4">شماره کمد</th>
+            <th class="column5">جزئیات</th>
+            <th class="column6">مجوزها</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let user of users" >
+            <td class="column1">{{user.id}}</td>
+            <td class="column2">{{user.name}}</td>
+            <td class="column3">{{user.phoneNo}}</td>
+            <td class="column4">{{user.shelfNo}}</td>
+            <td class="column5">{{user.details}}</td>
+            <td class="column6">
+              <button type="button" class="edit-user-btn btn-success" data-toggle="modal" data-target="#addPaymentModal" (click)="selectedUser(user.id)">پرداخت شهریه</button>
+              <button type="button" class="edit-user-btn btn-primary" routerLink="/users/{{user.id}}">ویرایش</button>
+              <button type="button" class="edit-user-btn btn-danger" (click)="deleteUser(user.id)">حذف</button>
+            </td>
+            <div class="modal fade" id="addPaymentModal" tabindex="-1" role="dialog" aria-labelledby="addPaymentModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="addPaymentModalLabel">پرداخت شهریه جدید</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form #form="ngForm" (submit)="form.valid && onSubmitPayment(form)">
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" id="price">مبلغ</span>
+                        </div>
+                        <input name="price" type="number" class="form-control" [(ngModel)]="paymentPrice" required>
+                      </div>
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" id="method">روش پرداخت</span>
+                        </div>
+                        <select name="method" class="form-control" [(ngModel)]="paymentMethod" required>
+                          <option value="POS">کارتخوان</option>
+                          <option value="Money">نقدی</option>
+                        </select>
+                      </div>
+                      <div class="form-group text-center">
+                        <button type="submit" class="btn btn-success">ثبت شهریه</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </tr>
+          </tbody>
+        </table>
+        <button type="button" class="add-user-btn btn-success" data-toggle="modal" data-target="#addUserModal">
+          افزودن فرد جدید
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addUserModalLabel">افزودن فرد جدید</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #form="ngForm" (submit)="form.valid && onSubmitUser(form)">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="name">نام</span>
+            </div>
+            <input name="name" #name="ngModel" class="form-control" [(ngModel)]="userService.formData.name" required>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="phoneNo">شماره تماس</span>
+            </div>
+            <input name="phoneNo" #phoneNo="ngModel" type="number" class="form-control" [(ngModel)]="userService.formData.phoneNo" required>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="shelfNo">شماره کمد</span>
+            </div>
+            <input name="shelfNo" #shelfNo="ngModel" type="number" class="form-control" [(ngModel)]="userService.formData.shelfNo">
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="details">جزئیات</span>
+            </div>
+            <textarea name="details" #details="ngModel" class="form-control" [(ngModel)]="userService.formData.details"></textarea>
+          </div>
+          <div class="form-group text-center">
+            <button type="submit" class="btn btn-success">ذخیره</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<notifier-container></notifier-container>

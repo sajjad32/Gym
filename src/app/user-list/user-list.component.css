@@ -1,0 +1,36 @@
+.jumbotron {
+  background-color: transparent;
+}
+table {
+  background: white;
+}
+table thead tr {
+  height: 40px;
+  background: #000;
+}
+table tbody tr {
+  height: 50px;
+}
+.column1 {width: 10%;}
+.column2 {width: 15%;}
+.column3 {width: 10%;}
+.column4 {width: 10%;}
+.column5 {width: 40%;}
+.column6 {width: 15%;}
+.add-user-btn {
+  margin-top: 15px;
+  border: none;
+  border-radius: 1.5rem;
+  width: 132px;
+  padding: 4px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.edit-user-btn {
+  border: none;
+  border-radius: .3rem;
+  padding: 5px 10px 5px 10px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-right: 5px;
+}

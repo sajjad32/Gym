@@ -1,0 +1,31 @@
+<div class="jumbotron">
+  <h2 class="display-4 text-center">لیست حضور امروز</h2>
+  <hr>
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="col-md-8">
+        <div class="table100">
+          <table>
+            <thead>
+            <tr class="table100-head">
+              <th class="column1">نام</th>
+              <th class="column2">زمان ورود</th>
+              <th class="column3">زمان خروج</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let present of presents" >
+              <td class="column1">{{present.user__name}}</td>
+              <td class="column2">{{present.enterTime}}</td>
+              <td class="column3">{{present.outTime}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<notifier-container></notifier-container>
+
