@@ -35,7 +35,7 @@ export class LineDiagramComponent implements OnInit {
           label: 'example chart',
           data: this.count,
           fill: false,
-          lineTension: 0.2,
+          lineTension: 1,
           borderColor: '#28a745',
           borderWidth: 1
         }]
@@ -54,7 +54,7 @@ export class LineDiagramComponent implements OnInit {
         scales: {
           yAxes: [{
             ticks: {
-              beginAtZero: true
+              beginAtZero: false
             }
           }]
         }

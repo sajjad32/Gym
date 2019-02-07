@@ -5,6 +5,7 @@ import {NgForm} from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { NotifierService } from 'angular-notifier';
+import {any} from 'codelyzer/util/function';
 
 @Component({
   selector: 'app-user',
@@ -77,4 +78,34 @@ export class UserComponent implements OnInit {
       }
     );
   }
+
+  loadImage($event) : void {
+    this.uploadImage($event.target);
+  }
+
+  uploadImage(inputValue: any): void {
+    const file:File = inputValue.files[0];
+    const myReader:FileReader = new FileReader();
+
+    myReader.readAsDataURL(file);
+    myReader.onloadend = (e) => {
+      this.userService.uploadImage(myReader.result, this.user.id).subscribe(
+        data => {
+          if (data['status'] === 200) {
+            this.notifier.notify( 'success', 'عکس فرد آپلود شد' );
+            this.getUser();
+          } else {
+            this.notifier.notify( 'info', 'مشکلی پیش آمده، ورود ثبت نشد' );
+          }
+          console.log(data);
+        },
+        error => {
+          this.notifier.notify( 'warning', 'سرویس در دسترس نمی باشد' );
+          console.log(error);
+        }
+      );
+    };
+
+  }
+
 }

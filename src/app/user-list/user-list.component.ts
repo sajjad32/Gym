@@ -3,6 +3,7 @@ import { UserService } from '../services/user.service';
 import { User } from '../User';
 import { NgForm } from '@angular/forms';
 import { NotifierService } from 'angular-notifier';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-users',
@@ -27,13 +28,13 @@ export class UserListComponent implements OnInit {
     this.userService.getUsers().subscribe(
       data => {
         if (data['status'] === 500) {
-          this.notifier.notify( 'info', 'Something went wrong. Action didn\'t complete' );
+          this.notifier.notify( 'info', 'مشکلی پیش آمده' );
         } else {
           this.users = data['users'];
         }
       },
       error => {
-        this.notifier.notify( 'warning', 'Api server is unreachable' );
+        this.notifier.notify( 'warning', 'سرویس در دسترس نمی باشد' );
         console.log(error.name);
       }
     );

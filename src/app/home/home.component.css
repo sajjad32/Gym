@@ -1,10 +1,29 @@
-.badge-pill i{
-  font-size: 14px;
-  left: -0.6em;
-  position: relative;
+.list-group-item {
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-right: 0;
 }
 
-.badge-pill i:hover {
+.list-group-item .username {
+  outline: 0;
+  padding: 0.6rem 1.4rem 0.6rem 2rem;
+}
+
+.list-group-item .username:hover {
+  cursor: pointer;
+}
+
+.badge-pill {
+  left: -0.6em;
+  position: relative;
+  padding: 0.6rem
+}
+
+.badge-pill i{
+  font-size: 14px;
+}
+
+.badge-pill:hover {
   cursor: pointer;
 }
 

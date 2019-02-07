@@ -10,7 +10,7 @@ import {NgForm} from '@angular/forms';
 })
 
 export class UserService {
-  formData: User;
+  formData = new User;
   paymentPrice = null;
   paymentMethod = '';
   readonly rootURL = 'http://localhost:8000/';
@@ -46,9 +46,8 @@ export class UserService {
 
   addUserEnter(id: number): Observable<any> {
     const date = new Date();
-    const currentDate = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
     const currentTime = date.getHours() + ':' + ('0' + (date.getMinutes() + 1)).slice(-2) + ':' + ('0' + date.getSeconds()).slice(-2);
-    const present = {'enterTime': currentTime, 'date': currentDate};
+    const present = {'enterTime': currentTime};
     const data = JSON.stringify({present});
     return this.http.post(this.rootURL + 'presents/enter/' + id, data, {headers: this.httpHeaders} );
   }
@@ -74,5 +73,11 @@ export class UserService {
     const data = {'startDate': startDate, 'endDate': endDate};
     const req = JSON.stringify({data});
     return this.http.post(this.rootURL + 'user-diagram/', req, {headers: this.httpHeaders});
+  }
+
+  uploadImage(image: any, id: number) {
+    const data = {'image': image, 'user_id': id};
+    const req = JSON.stringify({data});
+    return this.http.post(this.rootURL + 'upload-user-image/', req, {headers: this.httpHeaders});
   }
 }

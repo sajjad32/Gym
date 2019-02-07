@@ -1,9 +1,11 @@
 export class User {
   id: number;
   name: string;
-  phoneNo: string;
+  phoneNo: number;
   details: string;
   shelfNo: string;
+  registerDate?: string;
+  image?: string;
   flag: boolean;
 }
 

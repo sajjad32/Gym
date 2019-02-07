@@ -15,10 +15,12 @@
     <div class="col-md-10">
       <ul class="list-group">
         <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let user of users">
-          {{ user.name }}
-          <span class="badge badge-pill">
-            <i class="fa fa-plus" *ngIf="!user.flag" style="color: #177b40" (click)="addUserEnter(user.id)"></i>
-            <i class="fa fa-power-off" *ngIf="user.flag" style="color: red;" (click)="addUserOut(user.id)"></i>
+          <span class="username" routerLink="/users/{{user.id}}">{{ user.name }}</span>
+          <span class="badge badge-pill" *ngIf="user.flag" (click)="addUserOut(user.id)">
+            <i class="fa fa-power-off" style="color: red;"></i>
+          </span>
+          <span class="badge badge-pill" *ngIf="!user.flag" (click)="addUserEnter(user.id)">
+            <i class="fa fa-plus" style="color: #177b40"></i>
           </span>
         </li>
       </ul>

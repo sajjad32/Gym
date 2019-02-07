@@ -11,12 +11,13 @@ table thead tr {
 table tbody tr {
   height: 50px;
 }
-.column1 {width: 10%;}
+.column1 {width: 5%;}
 .column2 {width: 15%;}
 .column3 {width: 10%;}
 .column4 {width: 10%;}
-.column5 {width: 40%;}
-.column6 {width: 15%;}
+.column5 {width: 10%;}
+.column6 {width: 35%;}
+.column7 {width: 15%;}
 .add-user-btn {
   margin-top: 15px;
   border: none;

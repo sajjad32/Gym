@@ -10,6 +10,7 @@ import { NotifierService } from 'angular-notifier';
 })
 export class HomeComponent implements OnInit {
 
+  allUsers: User[];
   users: User[];
   searchString = '';
   private notifier: NotifierService;
@@ -25,7 +26,8 @@ export class HomeComponent implements OnInit {
   getUsers() {
     this.userService.getUsers().subscribe(
       data => {
-        this.users = data['users'];
+        this.allUsers = data['users'];
+        this.searchName();
       },
       error => {
         this.notifier.notify( 'warning', 'سرویس در دسترس نمی باشد' );
@@ -35,15 +37,11 @@ export class HomeComponent implements OnInit {
   }
 
   searchName() {
-    if (this.searchString === '') {
-      this.ngOnInit();
-    } else {
-      this.users = this.users.filter(
-        res => {
-          return res.name.toLocaleLowerCase().match(this.searchString.toLocaleLowerCase());
-        }
-      );
-    }
+    this.users = this.allUsers.filter(
+      res => {
+        return res.name.toLocaleLowerCase().match(this.searchString.toLocaleLowerCase());
+      }
+    );
   }
 
   addUserEnter(id: number) {
@@ -51,11 +49,11 @@ export class HomeComponent implements OnInit {
       data => {
         if (data['status'] === 200) {
           this.notifier.notify( 'success', 'ورود فرد ثبت شد' );
+          this.getUsers();
         } else {
           this.notifier.notify( 'info', 'مشکلی پیش آمده، ورود ثبت نشد' );
         }
         console.log(data);
-        this.getUsers();
       },
       error => {
         this.notifier.notify( 'warning', 'سرویس در دسترس نمی باشد' );
@@ -69,6 +67,7 @@ export class HomeComponent implements OnInit {
       data => {
         if (data['status'] === 200) {
           this.notifier.notify( 'success', 'خروج فرد ثبت شد' );
+          this.getUsers();
         } else {
           this.notifier.notify( 'info', 'مشکلی پیش آمده، خروج ثبت نشد' );
         }

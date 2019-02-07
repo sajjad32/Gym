@@ -25,16 +25,15 @@ select {
   padding-top: 3px !important;
 }
 ul, li {
-  margin: 0px;
+  margin: 0;
   list-style-type: none;
 }
 table {
-  border-spacing: 1;
   border-collapse: collapse;
-  border-radius: 5px;
   overflow: hidden;
   width: 100%;
   margin: 0 auto;
+  border-radius: 5px;
   position: relative;
 }
 table * {
@@ -44,8 +43,11 @@ table td, table th {
   padding-right: 10px;
   text-align: right;
 }
+table thead {
+
+}
 table tbody tr:last-child {
-  border: 0;
+  /*border: 1px solid #000;*/
 }
 .table100-head th{
   font-size: 18px;
