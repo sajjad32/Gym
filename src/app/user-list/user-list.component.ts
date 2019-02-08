@@ -65,37 +65,6 @@ export class UserListComponent implements OnInit {
     };
   }
 
-  resetPaymentForm() {
-    this.userService.paymentPrice = null;
-    this.userService.paymentMethod = '';
-  }
-
-  selectedUser(id: number) {
-    this.selected = id;
-  }
-
-  onSubmitPayment(form: NgForm) {
-    this.addPayment(form, this.selected);
-  }
-
-  addPayment(form: NgForm, id: number) {
-    this.userService.addPayment(form.value, id).subscribe(
-      data => {
-        if (data['status'] === 500) {
-          this.notifier.notify( 'info', 'مشکلی پیش آمده، پرداخت ثبت نشد' );
-        } else {
-          this.notifier.notify( 'success', 'پرداخت شهریه ثبت شد' );
-          this.resetPaymentForm();
-        }
-        console.log(data);
-      },
-      error => {
-        this.notifier.notify( 'warning', 'سرویس در دسترس نمی باشد' );
-        console.log(error);
-      }
-    );
-  }
-
   onSubmitUser(form: NgForm) {
     this.addUser(form);
     this.resetForm();

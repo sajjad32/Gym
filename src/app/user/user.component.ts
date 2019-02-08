@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
-import { User, Present, Payment } from '../User';
+import {User, Present, Payment, Exercise} from '../User';
 import {NgForm} from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
@@ -16,6 +16,7 @@ export class UserComponent implements OnInit {
   user: User = new User;
   presents: Present[];
   payments: Payment[];
+  exercises: Exercise[];
   private notifier: NotifierService;
 
   constructor(
@@ -37,6 +38,7 @@ export class UserComponent implements OnInit {
         this.user = data['user'][0];
         this.presents = data['presents'];
         this.payments = data['payments'];
+        this.exercises = data['exercises'];
       },
       error => {
         this.notifier.notify( 'warning', 'سرویس در دسترس نمی باشد' );
@@ -54,6 +56,33 @@ export class UserComponent implements OnInit {
       details: '',
       flag: false
     };
+  }
+
+  resetPaymentForm() {
+    this.userService.paymentPrice = null;
+    this.userService.paymentMethod = '';
+  }
+
+  onSubmitPayment(form: NgForm) {
+    this.addPayment(form, this.user.id);
+  }
+
+  addPayment(form: NgForm, id: number) {
+    this.userService.addPayment(form.value, id).subscribe(
+      data => {
+        if (data['status'] === 500) {
+          this.notifier.notify( 'info', 'مشکلی پیش آمده، پرداخت ثبت نشد' );
+        } else {
+          this.notifier.notify( 'success', 'پرداخت شهریه ثبت شد' );
+          this.getUser();
+        }
+        console.log(data);
+      },
+      error => {
+        this.notifier.notify( 'warning', 'سرویس در دسترس نمی باشد' );
+        console.log(error);
+      }
+    );
   }
 
   editUser() {
@@ -105,7 +134,28 @@ export class UserComponent implements OnInit {
         }
       );
     };
-
   }
 
+  onSubmitExercise(form: NgForm) {
+    this.addExercise(form);
+  }
+
+  addExercise(form: NgForm) {
+    this.userService.addExercise(form.value, this.user.id).subscribe(
+      data => {
+        if (data['status'] === 200) {
+          this.notifier.notify( 'success', 'برنامه فرد ثبت شد' );
+          this.getUser();
+        }
+        else {
+          this.notifier.notify( 'info', 'مشکلی پیش آمده، ورود ثبت نشد' );
+        }
+        console.log(data);
+      },
+      error => {
+        this.notifier.notify( 'warning', 'سرویس در دسترس نمی باشد' );
+        console.log(error)
+      }
+    )
+  }
 }

@@ -20,3 +20,8 @@ export class Present {
   enterTime: string;
   outTime: string;
 }
+
+export class Exercise {
+  date: string;
+  details: string;
+}

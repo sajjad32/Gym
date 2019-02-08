@@ -103,4 +103,10 @@ export class UserService {
     const req = JSON.stringify({data});
     return this.http.post(this.rootURL + 'upload-user-image/', req, {headers: this.httpHeaders});
   }
+
+  addExercise(exercise: any, user_id: number) {
+    exercise['user_id'] = user_id;
+    const req = JSON.stringify({exercise});
+    return this.http.post(this.rootURL + 'exercise/add', req, {headers: this.httpHeaders})
+  }
 }

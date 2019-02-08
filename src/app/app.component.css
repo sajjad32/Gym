@@ -77,8 +77,8 @@ body {
   font-family: yekan;
   position: absolute;
   transform: translate(0px, -23px);
-  top: -23px;
-  left: -9px;
+  top: -10px;
+  left: -3px;
   font-size: 13px;
   transition: .2s 0 all;
 }
@@ -87,8 +87,8 @@ body {
   font-family: yekan;
   position: absolute;
   transform: translate(0px, -23px);
-  top: -23px;
-  left: -2px;
+  top: -10px;
+  left: 4px;
   font-size: 13px;
   transition: .2s 0 all;
 }
@@ -97,8 +97,8 @@ body {
   font-family: yekan;
   position: absolute;
   transform: translate(0px, -23px);
-  top: -23px;
-  left: 0;
+  top: -10px;
+  left: 6px;
   font-size: 13px;
   transition: .2s 0 all;
 }
@@ -107,8 +107,8 @@ body {
   font-family: yekan;
   position: absolute;
   transform: translate(0px, -23px);
-  top: -23px;
-  left: -4px;
+  top: -10px;
+  left: 2px;
   font-size: 13px;
   transition: .2s 0 all;
 }
@@ -117,8 +117,8 @@ body {
   font-family: yekan;
   position: absolute;
   transform: translate(0px, -23px);
-  top: -23px;
-  left: -4px;
+  top: -10px;
+  left: 2px;
   font-size: 13px;
   transition: .2s 0 all;
 }
@@ -127,36 +127,36 @@ body {
 
 .icon-button.search:active:after{
   transform: translate(0px, 0px) scale(1);
-  top: -14px;
-  left: -9px;
+  top: -9px;
+  left: -3px;
   color: black;
   transition: .2s .1s all;
 }
 .icon-button.calendar:active:after{
   transform: translate(0px, 0px) scale(1);
-  top: -14px;
-  left: -2px;
+  top: -9px;
+  left: 4px;
   color: black;
   transition: .2s .1s all;
 }
 .icon-button.list:active:after{
   transform: translate(0px, 0px) scale(1);
-  top: -14px;
-  left: 0;
+  top: -9px;
+  left: 6px;
   color: black;
   transition: .2s .1s all;
 }
 .icon-button.credit:active:after{
   transform: translate(0px, 0px) scale(1);
-  top: -14px;
-  left: -4px;
+  top: -9px;
+  left: 2px;
   color: black;
   transition: .2s .1s all;
 }
 .icon-button.chart:active:after{
   transform: translate(0px, 0px) scale(1);
-  top: -14px;
-  left: -4px;
+  top: -9px;
+  left: 2px;
   color: black;
   transition: .2s .1s all;
 }

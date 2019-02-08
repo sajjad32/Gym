@@ -28,44 +28,9 @@
             <td class="column5">{{user.registerDate}}</td>
             <td class="column6">{{user.details}}</td>
             <td class="column7 actions">
-              <span data-toggle="modal" data-target="#addPaymentModal" (click)="selectedUser(user.id)"><i class="fas fa-credit-card"></i></span>
               <span routerLink="/users/{{user.id}}"><i class="fa fa-edit"></i></span>
               <span (click)="deleteUser(user.id)"><i class="fa fa-trash"></i></span>
             </td>
-            <div class="modal fade" id="addPaymentModal" tabindex="-1" role="dialog" aria-labelledby="addPaymentModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="addPaymentModalLabel">پرداخت شهریه جدید</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <form #form="ngForm" (submit)="form.valid && onSubmitPayment(form)">
-                      <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text" id="price">مبلغ</span>
-                        </div>
-                        <input name="price" type="number" class="form-control" [(ngModel)]="paymentPrice" required>
-                      </div>
-                      <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text" id="method">روش پرداخت</span>
-                        </div>
-                        <select name="method" class="form-control" [(ngModel)]="paymentMethod" required>
-                          <option value="کارتخوان">کارتخوان</option>
-                          <option value="نقدی">نقدی</option>
-                        </select>
-                      </div>
-                      <div class="form-group text-center">
-                        <button type="submit" class="btn btn-success" onclick="$('#addPaymentModal').modal('hide');">ثبت شهریه</button>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
           </tr>
           </tbody>
         </table>
@@ -106,7 +71,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form #form="ngForm" (submit)="form.valid && onSubmitUser(form)">
+        <form #form="ngForm" (submit)="onSubmitUser(form)">
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text" id="name">نام</span>
@@ -132,7 +97,7 @@
             <textarea name="details" #details="ngModel" class="form-control" [(ngModel)]="userService.formData.details"></textarea>
           </div>
           <div class="form-group text-center">
-            <button type="submit" class="btn btn-success" onclick="$('#addUserModal').modal('hide');">ذخیره</button>
+            <button type="submit" class="btn btn-success" onclick="$('#addUserModal').modal('hide');" *ngIf="form.valid">ذخیره</button>
           </div>
         </form>
       </div>

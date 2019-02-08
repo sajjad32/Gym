@@ -31,6 +31,8 @@
   opacity: 0;
   left: 0;
   top: 0;
+  height: 38px;
+  width: 100%;
 }
 
 .profile-head h5{
@@ -41,15 +43,50 @@
   color: #0062cc;
 }
 
-.profile-edit-btn{
+.setting {
+  cursor: pointer;
+  font-size: 20px;
+  border: 1px solid #555;
+  color: #555;
+  padding: 1px 8px;
+  border-radius: 30px;
+  top: 4px;
+  position: relative;
+}
+
+.setting:hover {
+  background-color: #eee;
+}
+
+.setting i {
+  top: 1px;
+  position: relative;
+}
+
+.setting:after {
+  display: none;
+}
+
+.setting-menu {
+  top: auto;
+  left: auto;
+  text-align: center;
+  cursor: pointer;
+}
+
+.custom-btn {
   border-radius: 1.5rem;
   width: 70%;
   padding: 2%;
   font-size: 14px;
   border: 1px solid transparent;
   font-weight: 600;
-  color: #6c757d;
   cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.profile-edit-btn{
+  color: #6c757d;
 }
 
 .profile-edit-btn:hover {

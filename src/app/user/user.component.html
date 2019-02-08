@@ -21,13 +21,23 @@
       </div>
     </div>
     <div class="col-md-2">
-      <button type="button" class="profile-edit-btn" data-toggle="modal" data-target="#editUserModal" (click)="editUser()">
-        ویراش اطلاعات
-      </button>
+      <span class="setting dropdown-toggle" id="settingMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fa fa-cog"></i>
+      </span>
+      <div class="setting-menu dropdown-menu" aria-labelledby="settingMenuLink">
+        <span data-toggle="modal" class="dropdown-item" data-target="#editUserModal" (click)="editUser()">
+          ویراش اطلاعات
+        </span>
+        <span data-toggle="modal" class="dropdown-item" data-target="#addPaymentModal" (click)="resetPaymentForm()">
+          پرداخت شهریه
+        </span>
+        <span data-toggle="modal" class="dropdown-item" data-target="#addExerciseModal">
+          افزودن برنامه
+        </span>
+      </div>
     </div>
 
-    <!--[ngClass]="status ? 'show' : ''"-->
-    <!-- Modal -->
+    <!-- editUserModal -->
     <div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="editUserModalLabel" aria-hidden='true'>
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -39,33 +49,33 @@
           </div>
           <div class="modal-body">
 
-            <form #form="ngForm" (submit)="onUpdate(form)">
+            <form #updateform="ngForm" (submit)="onUpdate(updateform)">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="name">نام</span>
                 </div>
-                <input name="name" #name="ngModel" class="form-control" [(ngModel)]="userService.formData.name">
+                <input name="name" class="form-control" [(ngModel)]="userService.formData.name" required>
               </div>
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="phoneNo">شماره تماس</span>
                 </div>
-                <input name="phoneNo" #phoneNo="ngModel" type="tel" class="form-control" [(ngModel)]="userService.formData.phoneNo">
+                <input name="phoneNo" type="tel" class="form-control" [(ngModel)]="userService.formData.phoneNo" required>
               </div>
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="shelfNo">شماره کمد</span>
                 </div>
-                <input name="shelfNo" #shelfNo="ngModel" type="number" class="form-control" [(ngModel)]="userService.formData.shelfNo">
+                <input name="shelfNo" type="number" class="form-control" [(ngModel)]="userService.formData.shelfNo">
               </div>
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="details">جزئیات</span>
                 </div>
-                <textarea name="details" #details="ngModel" class="form-control" [(ngModel)]="userService.formData.details"></textarea>.
+                <textarea name="details" class="form-control" [(ngModel)]="userService.formData.details"></textarea>.
               </div>
               <div class="form-group text-center">
-                <button type="submit" class="btn btn-success" onclick="$('#editUserModal').modal('hide');">ثبت تغییرات</button>
+                <button type="submit" class="btn btn-success" onclick="$('#editUserModal').modal('hide');" *ngIf="updateform.valid">ثبت تغییرات</button>
               </div>
             </form>
 
@@ -74,6 +84,68 @@
       </div>
     </div>
 
+    <!-- addPaymentModal -->
+    <div class="modal fade" id="addPaymentModal" tabindex="-1" role="dialog" aria-labelledby="addPaymentModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addPaymentModalLabel">پرداخت شهریه جدید</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form #form="ngForm" (submit)="onSubmitPayment(form)">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="price">مبلغ</span>
+                </div>
+                <input name="price" type="number" class="form-control" [(ngModel)]="paymentPrice" required>
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="method">روش پرداخت</span>
+                </div>
+                <select name="method" class="form-control" [(ngModel)]="paymentMethod" required>
+                  <option value="کارتخوان">کارتخوان</option>
+                  <option value="نقدی">نقدی</option>
+                </select>
+              </div>
+              <div class="form-group text-center">
+                <button type="submit" class="btn btn-success" onclick="$('#addPaymentModal').modal('hide');" *ngIf="form.valid">ثبت شهریه</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- addExerciseModal -->
+    <div class="modal fade" id="addExerciseModal" tabindex="-1" role="dialog" aria-labelledby="addExerciseModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addExerciseModalLabel">افزودن برنامه ورزشی</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form #exrciseform="ngForm" (submit)="onSubmitExercise(exrciseform)">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="detail">لیست</span>
+                </div>
+                <textarea name="detail" type="text" class="form-control" rows="10" [(ngModel)]="paymentPrice" required></textarea>
+              </div>
+              <div class="form-group text-center">
+                <button type="submit" class="btn btn-success" onclick="$('#addExerciseModal').modal('hide');" *ngIf="exrciseform.valid">ثبت برنامه</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
 
   </div>
   <br>
@@ -86,6 +158,9 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" id="payment-tab" data-toggle="tab" href="#payment" role="tab" aria-controls="payment" aria-selected="false">شهریه</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="exercise-tab" data-toggle="tab" href="#exercise" role="tab" aria-controls="exercise" aria-selected="false">برنامه</a>
         </li>
       </ul>
       <div class="tab-content profile-tab" id="myTabContent">
@@ -124,6 +199,24 @@
                 <td class="column1">{{pay.date}}</td>
                 <td class="column2">{{pay.price}} هزار تومان</td>
                 <td class="column3">{{pay.method}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="exercise" role="tabpanel" aria-labelledby="exercise-tab">
+          <div class="table100">
+            <table>
+              <thead>
+              <tr class="table100-head">
+                <th class="column1">تایخ</th>
+                <th class="column2">متن برنامه</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let exercise of exercises">
+                <td class="column1">{{exercise.date}}</td>
+                <td class="column2">{{exercise.details}}</td>
               </tr>
               </tbody>
             </table>
