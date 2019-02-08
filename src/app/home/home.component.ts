@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
   }
 
   getUsers() {
-    this.userService.getUsers().subscribe(
+    this.userService.searchUsers().subscribe(
       data => {
         this.allUsers = data['users'];
         this.searchName();

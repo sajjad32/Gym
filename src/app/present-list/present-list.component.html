@@ -21,6 +21,29 @@
             </tr>
             </tbody>
           </table>
+          <span class="presence_num">تعداد حضورهای امروز: {{presents_num}} نفر</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrapper tbl_pagination">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="pagination">
+            <ul class="pagination bootpag">
+              <li class="prev" *ngIf="!(current_page - 1 == 0)">
+                <span (click)="loadPresentsPage(current_page - 1)">«</span>
+              </li>
+              <li class="" *ngFor="let dummy of ' '.repeat((presents_num / each_page_records) + 1).split(''); let num = index" [class]="current_page == (num + 1) ? 'active' : ''">
+                <span (click)="loadPresentsPage(num + 1)">{{num + 1}}</span>
+              </li>
+              <li class="next" *ngIf="!(current_page == (Math.ceil(presents_num / each_page_records)))">
+                <span  (click)="loadPresentsPage(current_page + 1)">»</span>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>

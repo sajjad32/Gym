@@ -1,9 +1,10 @@
 <div class="jumbotron">
-  <h2 class="display-4 text-center">لیست شهریه های پرداختی</h2>
+  <h2 class="display-4 text-center">شهریه های {{month_name}} ماه</h2>
   <hr>
   <div class="container">
     <div class="row justify-content-md-center">
       <div class="col-md-8">
+        <dp-date-picker dir="rtl" [(ngModel)]="selected_month" mode="month" placeholder="انتخاب ماه" theme="dp-material" [config]="monthPickerConfig" (ngModelChange)="loadPaymentList()"></dp-date-picker>
         <div class="table100">
           <table>
             <thead>
@@ -23,6 +24,7 @@
             </tr>
             </tbody>
           </table>
+          <span class="payments_sum">مجموع شهریه های این ماه: {{payments_sum | number}} تومان</span>
         </div>
       </div>
     </div>

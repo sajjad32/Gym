@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { User } from '../User';
-import { USERS } from '../mock-users';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {NgForm} from '@angular/forms';
@@ -10,6 +9,20 @@ import {NgForm} from '@angular/forms';
 })
 
 export class UserService {
+  monthes = [
+    'فروردین',
+    'اردیبهشت',
+    'خرداد',
+    'تیر',
+    'مرداد',
+    'شهریور',
+    'مهر',
+    'آبان',
+    'آذر',
+    'دی',
+    'بهمن',
+    'اسفند'
+  ];
   formData = new User;
   paymentPrice = null;
   paymentMethod = '';
@@ -18,8 +31,14 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  getUsers(): Observable<any> {
-    return this.http.get(this.rootURL + 'users/', {headers: this.httpHeaders});
+  getUsers(startIndex, recordsPerPage): Observable<any> {
+    const users_id = {'startIndex': startIndex, 'recordsPerPage': recordsPerPage};
+    const data = JSON.stringify({users_id});
+    return this.http.post(this.rootURL + 'users/', data, {headers: this.httpHeaders});
+  }
+
+  searchUsers(): Observable<any> {
+    return this.http.get(this.rootURL + 'search-users/', {headers: this.httpHeaders});
   }
 
   getUser(id: number): Observable<any> {
@@ -40,8 +59,10 @@ export class UserService {
     return this.http.delete(this.rootURL + 'users/delete/' + id, {headers: this.httpHeaders});
   }
 
-  getTodayPresence(): Observable<any> {
-    return this.http.get(this.rootURL + 'presents/', {headers: this.httpHeaders});
+  getTodayPresence(startIndex, recordsPerPage): Observable<any> {
+    const today = {'startIndex': startIndex, 'recordsPerPage': recordsPerPage};
+    const data = JSON.stringify({today});
+    return this.http.post(this.rootURL + 'presents/', data, {headers: this.httpHeaders});
   }
 
   addUserEnter(id: number): Observable<any> {
@@ -60,8 +81,10 @@ export class UserService {
     return this.http.post(this.rootURL + 'presents/out/' + id, data, {headers: this.httpHeaders} );
   }
 
-  getPaymentList(): Observable<any> {
-    return this.http.get(this.rootURL + 'payments/', {headers: this.httpHeaders});
+  getPaymentList(start_month: string, end_month: string): Observable<any> {
+    const req_month = {'start_month': start_month, 'end_month': end_month};
+    const data = JSON.stringify({req_month});
+    return this.http.post(this.rootURL + 'payments/', data, {headers: this.httpHeaders});
   }
 
   addPayment(payment, id): Observable<any> {

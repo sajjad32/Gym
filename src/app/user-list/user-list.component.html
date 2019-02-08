@@ -1,5 +1,8 @@
 <div class="jumbotron">
   <h2 class="display-4 text-center">لیست افراد</h2>
+  <button type="button" class="add-user-btn btn-success" data-toggle="modal" data-target="#addUserModal">
+    افزودن فرد جدید
+  </button>
   <hr>
   <div class="row">
     <div class="col-md-12">
@@ -24,10 +27,10 @@
             <td class="column4">{{user.shelfNo}}</td>
             <td class="column5">{{user.registerDate}}</td>
             <td class="column6">{{user.details}}</td>
-            <td class="column7">
-              <button type="button" class="edit-user-btn btn-success" data-toggle="modal" data-target="#addPaymentModal" (click)="selectedUser(user.id)">پرداخت شهریه</button>
-              <button type="button" class="edit-user-btn btn-primary" routerLink="/users/{{user.id}}">ویرایش</button>
-              <button type="button" class="edit-user-btn btn-danger" (click)="deleteUser(user.id)">حذف</button>
+            <td class="column7 actions">
+              <span data-toggle="modal" data-target="#addPaymentModal" (click)="selectedUser(user.id)"><i class="fas fa-credit-card"></i></span>
+              <span routerLink="/users/{{user.id}}"><i class="fa fa-edit"></i></span>
+              <span (click)="deleteUser(user.id)"><i class="fa fa-trash"></i></span>
             </td>
             <div class="modal fade" id="addPaymentModal" tabindex="-1" role="dialog" aria-labelledby="addPaymentModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
@@ -66,9 +69,28 @@
           </tr>
           </tbody>
         </table>
-        <button type="button" class="add-user-btn btn-success" data-toggle="modal" data-target="#addUserModal">
-          افزودن فرد جدید
-        </button>
+        <span class="users_num">تعداد اعضای باشگاه: {{users_num}} نفر</span>
+      </div>
+    </div>
+  </div>
+  <div class="wrapper tbl_pagination">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="pagination">
+            <ul class="pagination bootpag">
+              <li class="prev" *ngIf="!(current_page - 1 == 0)">
+                <span (click)="loadUsersPage(current_page - 1)">«</span>
+              </li>
+              <li class="" *ngFor="let dummy of ' '.repeat((users_num / each_page_records) + 1).split(''); let num = index" [class]="current_page == (num + 1) ? 'active' : ''">
+                <span (click)="loadUsersPage(num + 1)">{{num + 1}}</span>
+              </li>
+              <li class="next" *ngIf="!(current_page == (Math.ceil(users_num / each_page_records)))">
+                <span (click)="loadUsersPage(current_page + 1)">»</span>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </div>

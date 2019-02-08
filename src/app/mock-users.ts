@@ -1,15 +1,15 @@
-import { User } from './User';
-
-export const USERS: User[] = [
-  {
-    id: 1,
-    name: 'sajjad',
-    phoneNo: '09127403028',
-    shelfNo: '7',
-    details: 'this guy is our web developer and we won\'t get him any money',
-    flag: false
-  }
-];
+// import { User } from './User';
+//
+// export const USERS: User[] = [
+//   {
+//     id: 1,
+//     name: 'sajjad',
+//     phoneNo: 09127403028,
+//     shelfNo: '7',
+//     details: 'this guy is our web developer and we won\'t get him any money',
+//     flag: false
+//   }
+// ];
 
 
 // payments: [

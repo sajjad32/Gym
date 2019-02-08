@@ -14,3 +14,9 @@ table tbody tr {
 .column1 {width: 40%;}
 .column2 {width: 30%;}
 .column3 {width: 30%;}
+.presence_num {
+  position: absolute;
+  font-size: 13px;
+  margin-top: 22px;
+  color: #737373;
+}

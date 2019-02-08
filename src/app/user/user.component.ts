@@ -49,7 +49,7 @@ export class UserComponent implements OnInit {
     this.userService.formData = {
       id: null,
       name: '',
-      phoneNo: '',
+      phoneNo: null,
       shelfNo: '',
       details: '',
       flag: false

@@ -11,12 +11,19 @@ import * as $ from 'jquery';
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
+
+  each_page_records = 10;
+  start_index = 0;
+  current_page = 1;
   users: User[];
+  users_num = 0;
   selected: number;
+  Math: any;
   private notifier: NotifierService;
 
   constructor(public userService: UserService, notifierService: NotifierService) {
     this.notifier = notifierService;
+    this.Math = Math;
   }
 
   ngOnInit() {
@@ -25,12 +32,13 @@ export class UserListComponent implements OnInit {
   }
 
   getUsers() {
-    this.userService.getUsers().subscribe(
+    this.userService.getUsers(this.start_index, this.each_page_records).subscribe(
       data => {
         if (data['status'] === 500) {
           this.notifier.notify( 'info', 'مشکلی پیش آمده' );
         } else {
           this.users = data['users'];
+          this.users_num = data['count'];
         }
       },
       error => {
@@ -40,11 +48,17 @@ export class UserListComponent implements OnInit {
     );
   }
 
+  loadUsersPage(page_num: number) {
+    this.start_index = (page_num - 1) * this.each_page_records;
+    this.current_page = page_num;
+    this.getUsers();
+  }
+
   resetForm() {
     this.userService.formData = {
       id: null,
       name: '',
-      phoneNo: '',
+      phoneNo: null,
       shelfNo: '',
       details: '',
       flag: false
